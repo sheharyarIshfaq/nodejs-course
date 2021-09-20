@@ -1,0 +1,9 @@
+h1 {
+  color: gray;
+}
+footer {
+  padding: 2px 0;
+  background-color: navy;
+  color: white;
+  text-align: center;
+}

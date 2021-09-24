@@ -23,61 +23,53 @@ MongoClient.connect(
     }
 
     const db = client.db(databaseName);
-    db.collection("users").insertOne(
-      {
-        _id: id,
-        name: "Aslam",
-        age: 53,
-      },
-      (error, result) => {
-        if (error) {
-          console.log("Unable to insert the user in the database");
-          return;
-        }
 
-        console.log(result.insertedId);
+    // db.collection("users").findOne(
+    //   { _id: new ObjectId("614c8a6d0353ab35d1ac606b") },
+    //   (error, user) => {
+    //     if (error) {
+    //       return "Unable to connect to database!";
+    //     }
+    //     console.log(user);
+    //   }
+    // );
+
+    // db.collection("users")
+    //   .find({ age: 20 })
+    //   .toArray((error, users) => {
+    //     if (error) {
+    //       console.log("Unable to connect to database");
+    //     }
+    //     console.log(users);
+    //   });
+
+    // db.collection("users")
+    //   .find({ age: 20 })
+    //   .count((error, count) => {
+    //     if (error) {
+    //       console.log("Unable to connect to database");
+    //     }
+    //     console.log(count);
+    //   });
+
+    //Challenge
+    db.collection("tasks").findOne(
+      { _id: new ObjectId("614c8b9172cddcc433a32f4d") },
+      (error, task) => {
+        if (error) {
+          console.log("Unable to connect to database");
+        }
+        console.log(task);
       }
     );
 
-    // db.collection("users").insertMany(
-    //   [
-    //     {
-    //       name: "Ali Haider",
-    //       age: 19,
-    //     },
-    //     {
-    //       name: "Abdullah",
-    //       age: 14,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to insert Users in the Database");
-    //     }
-
-    //     console.log(result.insertedIds);
-    //   }
-    // );
-
-    // db.collection("tasks").insertMany(
-    //   [
-    //     {
-    //       description: "Learn Mongodb",
-    //       completed: true,
-    //     },
-    //     { description: "Go to Gym", completed: false },
-    //     {
-    //       description: "Eat the lunch",
-    //       completed: true,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to insert the tasks into database");
-    //     }
-
-    //     console.log(result.insertedIds);
-    //   }
-    // );
+    db.collection("tasks")
+      .find({ completed: false })
+      .toArray((error, tasks) => {
+        if (error) {
+          console.log("Unable to connect to database");
+        }
+        console.log(tasks);
+      });
   }
 );

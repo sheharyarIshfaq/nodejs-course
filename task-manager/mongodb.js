@@ -24,52 +24,40 @@ MongoClient.connect(
 
     const db = client.db(databaseName);
 
-    // db.collection("users").findOne(
-    //   { _id: new ObjectId("614c8a6d0353ab35d1ac606b") },
-    //   (error, user) => {
-    //     if (error) {
-    //       return "Unable to connect to database!";
+    // db.collection("users")
+    //   .updateOne(
+    //     { _id: new ObjectId("614c872fc74387017072f387") },
+    //     {
+    //       $set: {
+    //         name: "Inzmam",
+    //       },
     //     }
-    //     console.log(user);
-    //   }
-    // );
+    //   )
+    //   .then((result) => console.log(result))
+    //   .catch((error) => console.log(error));
 
     // db.collection("users")
-    //   .find({ age: 20 })
-    //   .toArray((error, users) => {
-    //     if (error) {
-    //       console.log("Unable to connect to database");
+    //   .updateOne(
+    //     { _id: new ObjectId("614c872fc74387017072f387") },
+    //     {
+    //       $inc: {
+    //         age: 1,
+    //       },
     //     }
-    //     console.log(users);
-    //   });
-
-    // db.collection("users")
-    //   .find({ age: 20 })
-    //   .count((error, count) => {
-    //     if (error) {
-    //       console.log("Unable to connect to database");
-    //     }
-    //     console.log(count);
-    //   });
-
-    //Challenge
-    db.collection("tasks").findOne(
-      { _id: new ObjectId("614c8b9172cddcc433a32f4d") },
-      (error, task) => {
-        if (error) {
-          console.log("Unable to connect to database");
-        }
-        console.log(task);
-      }
-    );
+    //   )
+    //   .then((result) => console.log(result))
+    //   .catch((error) => console.log(error));
 
     db.collection("tasks")
-      .find({ completed: false })
-      .toArray((error, tasks) => {
-        if (error) {
-          console.log("Unable to connect to database");
+      .updateMany(
+        { completed: false },
+        {
+          $set: {
+            completed: true,
+          },
         }
-        console.log(tasks);
-      });
+      )
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
   }
 );
